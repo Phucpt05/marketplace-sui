@@ -87,7 +87,18 @@ module nft_marketplace::nft_marketplace {
     public struct NFT_MARKETPLACE has drop {}
 
     // Part 3: Module initializer to be executed when this module is published
-
+    fun init(ctx: &mut TxContext) {
+        let marketplace = Marketplace {
+            id: object::new(ctx),
+            listings: table::new<ID, Listing>(ctx),
+        };
+        
+        event::emit(MarketplaceInit {
+            object_id: object::id(&marketplace),
+        });
+        
+        transfer::public_transfer(marketplace, ctx.sender());
+    }
 
     // === Public-View Functions ===
 
