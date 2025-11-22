@@ -1,9 +1,10 @@
 import { createNetworkConfig } from "@mysten/dapp-kit";
 import { getFullnodeUrl } from "@mysten/sui.js/client";
 import {
-  DEVNET_COUNTER_PACKAGE_ID,
   DEVNET_MARKETPLACE_OBJECT_ID,
   DEVNET_MARKETPLACE_PACKAGE_ID,
+  MAINNET_MARKETPLACE_OBJECT_ID,
+  MAINNET_MARKETPLACE_PACKAGE_ID,
 } from "./constants.ts";
 
 const { networkConfig, useNetworkVariable, useNetworkVariables } =
@@ -11,9 +12,15 @@ const { networkConfig, useNetworkVariable, useNetworkVariables } =
     testnet: {
       url: getFullnodeUrl("testnet"),
       variables: {
-        counterPackageId: DEVNET_COUNTER_PACKAGE_ID,
         marketplacePackageId: DEVNET_MARKETPLACE_PACKAGE_ID,
         marketplaceObjectId: DEVNET_MARKETPLACE_OBJECT_ID,
+      },
+    },
+    mainnet: {
+      url: getFullnodeUrl("mainnet"),
+      variables: {
+        marketplacePackageId: MAINNET_MARKETPLACE_PACKAGE_ID,
+        marketplaceObjectId: MAINNET_MARKETPLACE_OBJECT_ID,
       },
     },
   });
